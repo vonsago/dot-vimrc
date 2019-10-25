@@ -12,9 +12,16 @@ syntax on
 "--------
 " Vim UI
 "--------
+"blackboard - Textmate's Blackboard theme for vim (with iTerm2 theme)
+"molokai - A port of the monokai scheme for TextMate
+"solarized - precision colorscheme for the vim text editor
+"vividchalk - colorscheme based on the Vibrant Ink theme for TextMate
+"distinguished - A dark vim color scheme for 256-color terminals.
+"tomorrow - Tomorrow Theme for Vim
+"fisa - soft color scheme for terminals with 256 colors Clone in Mac
 " color scheme
 set background=dark
-color solarized
+color fisa 
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -34,7 +41,7 @@ set nofoldenable                                                  " disable fold
 set confirm                                                       " prompt when existing from an unsaved file
 set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
-set mouse=a                                                       " use mouse in all modes
+"set mouse=a                                                       " use mouse in all modes
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
 set scrolloff=5                                                   " 5 lines above/below cursor when scrolling
@@ -98,8 +105,11 @@ let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
 " tabbar
-let g:Tb_MaxSize = 2
+let g:Tb_MaxSize = 3
 let g:Tb_TabWrap = 1
+map <leader>] :Tbbn<CR>
+map <leader>[ :Tbbp<CR>
+map <leader>x :Tbbd<CR>
 
 hi Tb_Normal guifg=white ctermfg=white
 hi Tb_Changed guifg=green ctermfg=green
@@ -206,6 +216,7 @@ nmap  <D-/> :
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
 
+
 "------------------
 " Useful Functions
 "------------------
@@ -214,6 +225,8 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
+inoremap <Esc><Esc> <Esc>:w<CR>
 
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
@@ -246,23 +259,21 @@ nnoremap ; :
 :command QA qa
 
 " for macvim
-if has("gui_running")
-    set go=aAce  " remove toolbar
-    "set transparency=30
-    set guifont=Monaco:h13
-    set showtabline=2
-    set columns=140
-    set lines=40
-    noremap <D-M-Left> :tabprevious<cr>
-    noremap <D-M-Right> :tabnext<cr>
-    map <D-1> 1gt
-    map <D-2> 2gt
-    map <D-3> 3gt
-    map <D-4> 4gt
-    map <D-5> 5gt
-    map <D-6> 6gt
-    map <D-7> 7gt
-    map <D-8> 8gt
-    map <D-9> 9gt
-    map <D-0> :tablast<CR>
-endif
+set go=aAce  " remove toolbar
+"set transparency=30
+set guifont=Monaco:h13
+set showtabline=2
+set columns=140
+set lines=40
+noremap <A-h> :tabprevious<cr>
+noremap <A-l> :tabnext<cr>
+map <leader>1 1gt
+map <leader>2 2gt
+map <leader>3 3gt
+map <leader>4 4gt
+map <leader>5 5gt
+map <leader>6 6gt
+map <leader>7 7gt
+map <leader>8 8gt
+map <leader>9 9gt
+map <leader>0 :tablast<CR>
